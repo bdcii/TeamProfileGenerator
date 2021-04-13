@@ -9,9 +9,10 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+
+//variables to generate html file and place it in specified directory
 const output_dir = path.resolve(__dirname, "dist");
 const output_path = path.join(output_dir, "teamsite.html")
-
 const render = require("./src/template-helper");
 
 
@@ -68,8 +69,14 @@ function addManager() {
             name: 'managerOffice',
         },
     ]).then(answers => {
+
+        //creates new Manager object using collected user input
         const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice);
+
+        //pushes instance of Manager object into teamArray for later use
         teamArray.push(manager);
+
+        //prompt user for next step
         askWhatsNext();
     })
 }
@@ -98,8 +105,14 @@ function addEngineer() {
             name: 'engineerGitHub',
         },
     ]).then(answers => {
+
+        //creates new Engineer object using collected user input
         const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGitHub);
+
+        //pushes instance of Engineer object into the teamArray for later use
         teamArray.push(engineer);
+
+        //prompt user for next step
         askWhatsNext();
     })
 }
@@ -128,14 +141,23 @@ function addIntern() {
             name: 'internSchool',
         },
     ]).then(answers => {
+
+        //creates new Intern object collected from user input
         const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
+
+        //pushes instance of Intern object into teamArray for later use
         teamArray.push(intern);
+
+        //prompt user for next step
         askWhatsNext();
     })
 }
 
-function buildTeam(){
-    // console.log('Team Members: ', teamArray);
+//this function generates the html page using the data collected from user prompts
+function buildTeam() {
+
+    //this function uses the file system to create an html file with the data collected from user prompts.  It puts the file in the directory specified by the output
+    //path argument. It uses the render function to inject the collected user data sitting in the teamArray into the template js file, and uses that to generate the html
     fs.writeFileSync(output_path, render(teamArray), "utf-8");
 }
 
