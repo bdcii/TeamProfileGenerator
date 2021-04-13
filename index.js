@@ -1,6 +1,6 @@
-//setting variables for modules I will need later
+//setting variables for access to npm modules I will need later
 const inquirer = require("inquirer");
-const jest = require("jest");
+const path = require("path");
 const fs = require("fs");
 
 //setting variables to connect the different Class .js files
@@ -9,14 +9,22 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+const output_dir = path.resolve(__dirname, "dist");
+const output_path = path.join(output_dir, "teamsite.html")
+
+const render = require("./src/template-helper");
+
+
 //array that collects employee data from user submission
 let teamArray = [];
+
 
 //function that runs at start off application
 function runApp() {
     console.log('Please enter Manager information to begin building team');
     addManager();
 }
+
 
 //function that runs at end of each team member prompt. Lets user choose next step to take.
 function askWhatsNext() {
@@ -81,7 +89,7 @@ function addEngineer() {
         },
         {
             type: 'input',
-            message: 'What is the Enginneer email address?',
+            message: 'What is the Engineer email address?',
             name: 'engineerEmail',
         },
         {
@@ -127,7 +135,8 @@ function addIntern() {
 }
 
 function buildTeam(){
-    console.log('Team Members: ', teamArray);
+    // console.log('Team Members: ', teamArray);
+    fs.writeFileSync(output_path, render(teamArray), "utf-8");
 }
 
 //starting application

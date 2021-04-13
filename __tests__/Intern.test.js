@@ -9,7 +9,7 @@ test("can create Intern object", () => {
 });
 
 test("Can set name using Intern constructors", () => {
-    const testIntern = new Intern("Daria", 9, "daria@fakemail.com", "Lawndale High");
+    const testIntern = new Intern("Daria", 9, "daria@fakemail.com", "Lawndale High"); 
     expect(testIntern.name).toBe("Daria");
 });
 

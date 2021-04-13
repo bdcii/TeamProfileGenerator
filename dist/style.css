@@ -1,0 +1,24 @@
+body {
+    background-color: gray;
+}
+
+.team-section {
+    max-width: 900px;
+    flex-wrap: wrap;
+}
+.team-header{
+    background-color: rgb(37, 37, 37);
+    color:cornsilk;
+}
+
+.team-card {
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    color:rgb(219, 210, 216);
+    background-color: rgb(37, 37, 37);
+}
+
+.card-body {
+    display: flex;
+}
