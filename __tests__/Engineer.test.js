@@ -25,7 +25,7 @@ test("Can set email using Engineer constructors", () => {
 
 test("Does getGitHub() return GitHub profile name", () => {
     const testEngineer = new Engineer("Dylan", 5, "dylan@fakemail.com", "dylanTop5");
-    expect(testEngineer.getGithub()).toBe("dylanTop5");
+    expect(testEngineer.getGitHub()).toBe("dylanTop5");
 });
 
 test("Does getRole() return Employee role", () => {
